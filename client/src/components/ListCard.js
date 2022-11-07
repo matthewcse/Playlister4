@@ -51,7 +51,7 @@ function ListCard(props) {
         event.stopPropagation();
         let _id = event.target.id;
         _id = ("" + _id).substring("delete-list-".length);
-        store.markListForDeletion(_id);
+        store.markListForDeletion(id);
     }
 
     function handleKeyPress(event) {
