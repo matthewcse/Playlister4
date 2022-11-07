@@ -3,6 +3,7 @@ import GlobalStoreContext from '../store';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import { CurrentModal } from '../store';
 
 const style = {
     position: 'absolute',
@@ -38,7 +39,7 @@ export default function MUIRemoveSongModal() {
 
     return (
         <Modal
-            open={store.listMarkedForDeletion !== null}//see if this works to change
+            open={store.currentModal === CurrentModal.REMOVE_SONG}//see if this works to change
         >
             <Box sx={style}>
             <div
