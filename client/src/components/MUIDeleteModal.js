@@ -34,22 +34,34 @@ export default function MUIDeleteModal() {
             open={store.listMarkedForDeletion !== null}
         >
             <Box sx={style}>
-                <div className="modal-dialog">
-                <header className="dialog-header">
-                    Delete the {name} Playlist?
-                </header>
-                <div id="confirm-cancel-container">
-                    <button
-                        id="dialog-yes-button"
-                        className="modal-button"
-                        onClick={handleDeleteList}
-                    >Confirm</button>
-                    <button
-                        id="dialog-no-button"
-                        className="modal-button"
-                        onClick={handleCloseModal}
-                    >Cancel</button>
+            <div
+        id="delete-list-modal"
+        className="modal is-visible"
+        data-animation="slideInOutLeft">
+        <div className="modal-root" id='verify-delete-list-root'>
+            <div className="modal-north">
+            Delete the {name} playlist?
+            </div>
+            <div className="modal-center">
+                <div className="modal-center-content">
+                    Are you sure you wish to permanently delete the {name} playlist?
                 </div>
+            </div>
+            <div className="modal-south">
+                <input 
+                    type="button" 
+                    id="remove-song-confirm-button" 
+                    className="modal-button" 
+                    onClick={handleDeleteList} 
+                    value='Confirm' />
+                <input 
+                    type="button" 
+                    id="remove-song-cancel-button" 
+                    className="modal-button" 
+                    onClick={handleCloseModal} 
+                    value='Cancel' />
+            </div>
+        </div>
             </div>
             </Box>
         </Modal>
