@@ -54,7 +54,7 @@ export default function AppBanner() {
             <MenuItem onClick={handleMenuClose}><Link to='/register/'>Create New Account</Link></MenuItem>
         </Menu>
     );
-    const loggedInMenu = 
+    const loggedInMenu = (
         <Menu
             anchorEl={anchorEl}
             anchorOrigin={{
@@ -71,10 +71,12 @@ export default function AppBanner() {
             onClose={handleMenuClose}
         >
             <MenuItem onClick={handleLogout}>Logout</MenuItem>
-        </Menu>        
+        </Menu>   
+    );     
 
     let editToolbar = "";
     let menu = loggedOutMenu;
+    console.log(auth.loggedIn);
     if (auth.loggedIn) {
         menu = loggedInMenu;
         if (store.currentList) {
