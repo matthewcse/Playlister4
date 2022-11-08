@@ -3,7 +3,7 @@ import GlobalStoreContext from '../store';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { CurrentModal } from '../store';
+import { Button } from '@mui/material';
 
 const style = {
     position: 'absolute',
@@ -50,7 +50,7 @@ export default function MUIEditSongModal() {
 
     return (
         <Modal
-            open={store.currentModal === CurrentModal.EDIT_SONG}//see if this works to change
+            open={store.isEditSongModalOpen()}
         >
             <Box sx={style}>
             <div
@@ -89,18 +89,18 @@ export default function MUIEditSongModal() {
                         onChange={handleUpdateYouTubeId} />
                 </div>
                 <div className="modal-south">
-                    <input 
-                        type="button" 
-                        id="edit-song-confirm-button" 
-                        className="modal-button" 
-                        value='Confirm' 
-                        onClick={handleConfirmEditSong} />
-                    <input 
-                        type="button" 
-                        id="edit-song-cancel-button" 
-                        className="modal-button" 
-                        value='Cancel' 
-                        onClick={handleCancelEditSong} />
+                    <Button 
+                    variant = "outlined"
+                    id="edit-song-confirm-button" 
+                    className="modal-button"  
+                    onClick={handleConfirmEditSong}
+                    >Confirm</Button>
+                    <Button
+                    variant = "outlined"
+                    id="edit-song-cancel-button" 
+                    className="modal-button" 
+                    onClick={handleCancelEditSong}
+                    >Cancel</Button>
                 </div>
             </div>
         </div>
