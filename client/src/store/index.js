@@ -519,6 +519,9 @@ function GlobalStoreContextProvider(props) {
             payload: null
         });
     }
+    store.isListNameEditActive = function(){
+        return store.listNameActive;
+    }
 
     return (
         <GlobalStoreContext.Provider value={{

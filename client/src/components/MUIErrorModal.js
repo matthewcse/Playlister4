@@ -1,40 +1,45 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
 import Modal from '@mui/material/Modal';
-import RegisterScreen from './RegisterScreen';
+import { useContext } from 'react';
+import AuthContext from '../auth'
+import { Button } from '@mui/material';
 
 const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
+    height: 200,
     width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
+    border: '5px solid yellow',
+    fontSize: "20px",
+    p: 4
 };
 
 export default function MUIErrorModal() {
-    const {reg} = React.useContext(RegisterScreen);
-    let open = false;
+    const { auth } = useContext(AuthContext);
     function handleClose () {
-        open = false;
-    }
-
-    let modalClass = "modal";
-    if (reg.error !== null) {
-        modalClass += " is-visible";
-        open = true;
+        auth.closeError();
     }
     
     return (
+        <Modal open = {auth.isErrorModalOpen()}>
+         <Alert sx={style} severity="warning">{auth.error}
+         <Button sx={{color:"black", mt:"20px", ml:"85px", fontSize: 13, fontWeight: 'bold', border: 2}}
+            variant="outlined"
+            onClick={handleClose}>Close</Button>
+         </Alert>
+        </Modal>
+        /*
         <Modal
-            open={open}
+            open={auth.isErrorModalOpen()}
         >
             <Box sx={style}>
             <div
         id="error-modal"
+        className="modal is-visible"
         data-animation="slideInOutLeft">
         <div className="modal-root" id='error-root'>
             <div className="modal-north">
@@ -42,7 +47,7 @@ export default function MUIErrorModal() {
             </div>
             <div className="modal-center">
                 <div className="modal-center-content">
-                    {reg.error}
+                    {auth.error}
                 </div>
             </div>
             <div className="modal-south">
@@ -56,6 +61,6 @@ export default function MUIErrorModal() {
         </div>
     </div>
             </Box>
-        </Modal>
+        </Modal>*/
     );
 }
